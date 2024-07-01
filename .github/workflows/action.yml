@@ -1,0 +1,48 @@
+name: CI for create_users.sh
+
+on: [push, pull_request]
+
+jobs:
+  test-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Create secure directory
+      run: |
+        sudo mkdir -p /var/secure
+        sudo chmod 700 /var/secure
+
+    - name: Create sample input file
+      run: |
+        echo "light; sudo,dev,www-data" > users.txt
+        echo "idimma; sudo" >> users.txt
+        echo "mayowa; dev,www-data" >> users.txt
+
+    - name: Make script executable
+      run: chmod +x create_users.sh
+
+    - name: Run the script
+      run: sudo ./create_users.sh users.txt
+
+    - name: Verify log file creation
+      run: |
+        if [ ! -f /var/log/user_management.log ]; then
+          echo "Log file not found!"
+          exit 1
+        fi
+        echo "Log file found."
+
+    - name: Verify password file creation
+      run: |
+        if [ ! -f /var/secure/user_passwords.txt ]; then
+          echo "Password file not found!"
+          exit 1
+        fi
+        if [ "$(stat -c %a /var/secure/user_passwords.txt)" != "600" ]; then
+          echo "Password file permissions are not set to 600!"
+          exit 1
+        fi
+        echo "Password file found and permissions are set correctly."
