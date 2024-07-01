@@ -10,13 +10,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Create secure directory
+    - name: Create necessary directories and files
       run: |
         sudo mkdir -p /var/secure
         sudo chmod 700 /var/secure
-
-    - name: Create sample input file
-      run: |
         echo "light; sudo,dev,www-data" > users.txt
         echo "idimma; sudo" >> users.txt
         echo "mayowa; dev,www-data" >> users.txt
@@ -46,3 +43,11 @@ jobs:
           exit 1
         fi
         echo "Password file found and permissions are set correctly."
+
+    - name: Display logs for debugging
+      run: |
+        echo "Content of /var/log/user_management.log:"
+        sudo cat /var/log/user_management.log
+        echo "Content of /var/secure/user_passwords.txt:"
+        sudo cat /var/secure/user_passwords.txt
+
