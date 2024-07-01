@@ -49,5 +49,5 @@ jobs:
         echo "Content of /var/log/user_management.log:"
         sudo cat /var/log/user_management.log
         echo "Content of /var/secure/user_passwords.txt:"
-        sudo cat /var/secure/user_passwords.txt
+        sudo cat /var/secure/user_passwords.txt || echo "Password file is empty or not readable"
 
