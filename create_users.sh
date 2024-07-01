@@ -80,6 +80,13 @@ while IFS=';' read -r username groups; do
     fi
 done < "$FILE"
 
+# Ensure the password file is created
+if [ ! -f "$PASSWORD_FILE" ]; then
+    touch "$PASSWORD_FILE"
+    chmod 600 "$PASSWORD_FILE"
+    log_message "Password file created and permissions set to 600"
+fi
+
 # Secure the password file
 chmod 600 "$PASSWORD_FILE"
 log_message "Password file permissions set to 600"
