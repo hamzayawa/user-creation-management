@@ -1,4 +1,4 @@
-[![HTML-CSS-JS CI Pipeline](https://github.com/hamzayawa/user-creation-management/actions/workflows/check.yml/badge.svg)](https://github.com/hamzayawa/user-creation-management/actions/workflows/check.yml)
+[![CI Pipeline](https://github.com/hamzayawa/user-creation-management/actions/workflows/check.yml/badge.svg)](https://github.com/hamzayawa/user-creation-management/actions/workflows/check.yml)
 [![MIT license](https://img.shields.io/github/license/bhalut/Tropical-Puzzle.svg)](https://github.com/hamzayawa/user-creation-management/blob/master/LICENSE)
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 
