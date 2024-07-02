@@ -13,13 +13,13 @@ log_message() {
     echo "$(date +'%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
 }
 
-# Function to create a user
+# Function to create a user and their personal group
 create_user() {
     local username=$1
-    log_message "Creating user $username"
-    useradd -m -s /bin/bash -G "$username" "$username"
+    log_message "Creating user $username and personal group $username"
+    useradd -m -s /bin/bash -U "$username"
     if [ $? -eq 0 ]; then
-        log_message "User $username created"
+        log_message "User $username and group $username created"
     else
         log_message "ERROR: Failed to create user $username"
     fi
